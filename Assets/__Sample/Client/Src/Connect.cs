@@ -36,17 +36,15 @@ namespace Sample {
 				Socket.Reconnect(socket); // reconnect
             });
 
-			socket.On(SystemEvents.connectTimeOut , () => {
-				Debug.Log("Socket.io Connection Timeout: serverUrl = " + serverUrl);
-				Socket.Reconnect(socket); // reconnect
-			});
-
-			socket.On(SystemEvents.connectError , (Exception e) => {
-				Debug.Log("Socket.io Connection Error: " + e.ToString());
-				Socket.Reconnect(socket); // reconnect
-			});
+	    socket.On(SystemEvents.connectTimeOut , () => {
+	    	Debug.Log("Socket.io Connection Timeout: serverUrl = " + serverUrl);
+	    	Socket.Reconnect(socket); // reconnect
+	    });
+            
+	    socket.On(SystemEvents.connectError , (Exception e) => {
+		Debug.Log("Socket.io Connection Error: " + e.ToString());
+		Socket.Reconnect(socket); // reconnect
+	    });
         }
-
     }
-
 }
