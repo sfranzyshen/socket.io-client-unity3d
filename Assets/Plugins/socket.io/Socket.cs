@@ -323,14 +323,8 @@ namespace socket.io {
                         Debug.LogWarningFormat("{0} has no body(data)", pkt.ToString());
                         return;
                     }
-
-                    var seperateIndex = pkt.body.IndexOf(", ");
-
-                    var seperatorLen = 2;
-                    if (seperateIndex == -1) {
-                        seperateIndex = pkt.body.IndexOf(',');
-                        seperatorLen = 1;
-                    }
+                    var seperateIndex = pkt.body.IndexOf(',');
+				    var seperatorLen = 1;
 
                     var eventName = pkt.body.Substring(2, seperateIndex - 3);
                     if (!_handlers.ContainsKey(eventName)) {
@@ -338,7 +332,7 @@ namespace socket.io {
                         break;
                     }
 
-                    var data = pkt.body.Substring(seperateIndex + seperatorLen, pkt.body.Length - seperateIndex - seperatorLen - 1);
+                    var data = pkt.body.Substring(seperateIndex + seperatorLen, pkt.body.Length - seperateIndex - seperatorLen - 1).TrimStart();
                     _handlers[eventName](data);
                     break;
 
