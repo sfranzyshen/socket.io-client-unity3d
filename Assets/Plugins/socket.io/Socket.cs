@@ -323,8 +323,9 @@ namespace socket.io {
                         Debug.LogWarningFormat("{0} has no body(data)", pkt.ToString());
                         return;
                     }
+			    
                     var seperateIndex = pkt.body.IndexOf(',');
-				    var seperatorLen = 1;
+		    var seperatorLen = 1;
 
                     var eventName = pkt.body.Substring(2, seperateIndex - 3);
                     if (!_handlers.ContainsKey(eventName)) {
