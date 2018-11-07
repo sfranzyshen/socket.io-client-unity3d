@@ -22,7 +22,15 @@ namespace socket.io {
             SocketManager.Instance.Connect(socket);
             return socket;
         }
-
+        
+        /// <summary>
+        /// Reconnects the socket which is disconnected
+        /// </summary>
+        /// <param name="socket"></param>
+        public static void Reconnect(Socket socket) {
+            SocketManager.Instance.Reconnect(socket, 1);
+        }
+        
         #region On/Off methods
 
         public void On(string eventName, Action<string> callback) {
